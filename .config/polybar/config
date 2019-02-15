@@ -1,0 +1,105 @@
+[colors]
+background = #222
+background-alt = #444
+foreground = #dfdfdf
+foreground-alt = #888
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/main]
+width = 100%
+height = 2.5%
+
+fixed-center = false
+bottom = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-size = 0
+line-size = 2
+padding = 1
+module-margin = 1
+
+font-0 = "Noto Sans Mono:size=10;1"
+font-1 = "Noto Sans Symbols:size=10;1"
+font-2 = "Noto Sans Symbols2:size=10;1"
+
+modules-left = date bspwm xwindow
+modules-center =
+modules-right = eth memory cpu alsa
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 24
+
+override-redirect = false
+wm-restack = bspwm
+
+[module/date]
+type = internal/date
+
+interval = 1.0
+
+date = %a %d
+time = %H:%M:%S
+
+format-prefix =
+format-prefix-foreground = ${colors.foreground-alt}
+format-overline = #0a6cf5
+
+label = %date% %time%
+
+[module/bspwm]
+type = internal/bspwm
+
+enable-scroll = false
+
+label-focused-overline = #fba922
+label-urgent-overline = #9b0a20
+label-occupied-foreground = #cccccc
+label-empty-foreground = #555555
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+
+[module/eth]
+type = internal/network
+interface = enp3s0
+interval = 3.0
+
+format-connected-overline = #55aa55
+format-connected-prefix = "🖧 "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %ip%
+
+format-disconnected =
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "🗍 "
+format-prefix-foreground = ${colors.foreground-alt}
+format-overline = #4bffdc
+label = %percentage_used:2%%
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "💻 "
+format-prefix-foreground = ${colors.foreground-alt}
+format-overline = #f90000
+label = %percentage:2%%
+
+[module/alsa]
+type = internal/alsa
+format-volume = <ramp-volume> <label-volume>
+
+label-muted = 🔇 muted
+label-muted-foreground = #66
+
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
