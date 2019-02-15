@@ -17,7 +17,7 @@ super + shift + Return
 super + p
 	dmenu_run
 super + d
-	passmenu --type
+	passmenu
 
 # make sxhkd reload its configuration files:
 super + Escape
