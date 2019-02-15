@@ -36,21 +36,6 @@ let g:rg_command = '
   \ -g "!{.git,node_modules,vendor}/*" '
 
 command! -bang -nargs=* F call fzf#vim#grep(g:rg_command .shellescape(<q-args>), 1, <bang>0)
-" easymotion {{{2
-let g:EasyMotion_startofline = 0
-let g:EasyMotion_use_upper = 1
-let g:EasyMotion_keys = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ;'
-let g:EasyMotion_smartcase = 1
-
-"vim-pad {{{2
-let g:pad#dir = "~/.vim-pad/"
-
-" delimitMate {{{2
-let g:delimitMate_expand_cr = 1
-let g:delimitMate_matchpairs = "{:}"
-au FileType tex let b:delimitMate_quotes = "\" ' $"
-
-
 " vimtex {{{2
 let g:vimtex_view_method = 'zathura'
 " vim-go {{{2
