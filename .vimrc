@@ -3,10 +3,7 @@ let mapleader = "\\"
 " vim-plug {{{1
 call plug#begin('~/.vim/plugged')
 
-Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/vim-lsp'
+Plug 'w0rp/ale'
 Plug 'vim-utils/vim-cscope'
 Plug 'junegunn/fzf.vim'
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
@@ -58,14 +55,8 @@ let g:lastplace_open_folds = 0
 " vim-rust {{{2
 let g:rustfmt_autosave = 1
 
-" vim-lsp {{{2
-if executable('rls')
-	au User lsp_setup call lsp#register_server({
-	\ 'name': 'rls',
-	\ 'cmd': {server_info->['rustup', 'run', 'stable', 'rls']},
-	\ 'whitelist': ['rust'],
-	\ })
-endif
+" ale {{{2
+let g:ale_set_highlights = 0
 " Folding {{{1
 set foldmethod=marker
 set foldlevelstart=0
