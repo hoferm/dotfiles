@@ -1,11 +1,18 @@
 #! /bin/sh
 
-sxhkd &
-$HOME/.config/polybar/launch.sh
+if ! pgrep -x "sxhkd" > /dev/null
+then
+    sxhkd&
+fi
+
+if ! pgrep -x "polybar" > /dev/null
+then
+    $HOME/.config/polybar/launch.sh
+fi
 
 xsetroot -cursor_name left_ptr &
 
-bspc monitor DVI-I-1 -d web dev media mail random
+bspc monitor DVI-I-1 -d      
 # bspc monitor HDMI-0 -d III
 
 bspc config border_width          1
@@ -16,8 +23,10 @@ bspc config split_ratio           0.50
 bspc config borderless_monocle    false
 bspc config gapless_monocle       true
 bspc config ignore_ewmh_focus     true
-bspc config history_aware_focus   true
+# bspc config history_aware_focus   true
 bspc config honor_size_hints      false
 
 bspc rule -a scratchpad state=floating sticky=on
+bspc rule -a *:org-capture state=floating follow=on sticky=on
+bspc rule -a desktop=^5 state=floating
 # st -c scratchpad -e ~/bin/scratch &

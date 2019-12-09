@@ -1,0 +1,33 @@
+set newtab about:blank
+
+set editorcmd alacritty -e nvim
+" Toggle comments on reddit and hackernews
+bind ;c hint -c [class*="expand"],[class="togg"]
+
+" Make gu take you back to subreddit from comments
+bindurl reddit.com gu urlparent 3
+
+set hintfiltermode vimperator-reflow
+set hintnames numeric
+
+unbind <C-f>
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
+" Better hinting
+bindurl youtu((\.be)|(be\.com)) f hint -J
+bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+
+" Go to old reddit
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
+" Bookmarking tool
+alias bm_add jsb -p tri.native.run("bookmarks -a " + JS_ARG)
+alias bm_del jsb -p tri.native.run("bookmarks -d " + JS_ARG)
+bind a composite js document.location.href | bm_add
+bind A composite js document.location.href | bm_del
+
+vim: set filetype=vim:

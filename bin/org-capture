@@ -1,0 +1,13 @@
+#!/usr/bin/sh
+cleanup() {
+    emacsclient --eval '(let (kill-emacs-hook) (kill-emacs))'
+}
+
+if ! emacsclient -e nil; then
+    emacs --daemon
+    trap cleanup EXIT INT TERM
+fi
+
+emacsclient -a "" \
+    -c -F '((name . "org-capture") (width . 70) (height . 25) (transient . t))' \
+    -e "(+org-capture/open-frame \"\" \"t\")"

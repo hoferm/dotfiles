@@ -3,25 +3,55 @@
 #
 #
 super + w
-	firefox
+	apulse firefox
+
+super + e
+	emacs
+
+super + x
+	org-capture
 
 # terminal emulator
 super + Return
 	alacritty
 
 super + shift + Return
-	id=$(cat /tmp/scratchid);\
-	bspc node $id --flag hidden; bspc node -f $id
+	alacritty -e tmux
+
+# super + shift + Return
+# 	id=$(cat /tmp/scratchid);\
+# 	bspc node $id --flag hidden; bspc node -f $id
 
 # program launcher
 super + p
-	dmenu_run
+	rofi -show run
 super + d
-	passmenu
+	rofi-pass
+
+# Launch or delete bookmarks
+super + b
+        bookmarks
+super + B
+        bookmarks -d
+
+super + q
+	dmenufire
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+XF86AudioPlay
+	mpc toggle
+
+XF86AudioNext
+	mpc next
+
+XF86AudioPrev
+	mpc prev
+
+XF86AudioStop
+	mpc stop
 
 XF86AudioMute
 	amixer -q set Master toggle
@@ -152,3 +182,7 @@ super + {_,shift} + {f,v}
 # rotate
 super + r
 	bspc node @parent -R 90
+
+# change gap size
+super + {plus,minus}
+	bspwm-gapresize {+,-}
