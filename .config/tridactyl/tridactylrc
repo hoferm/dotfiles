@@ -1,4 +1,11 @@
 set newtab about:blank
+set searchengine duckduckgo
+set colors base16-github
+set modeindicator false
+set modeindicatorshowkeys true
+
+guiset_quiet hoverlink right
+guiset_quiet tabs count
 
 set editorcmd alacritty -e nvim
 " Toggle comments on reddit and hackernews
@@ -25,9 +32,17 @@ bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 
 " Bookmarking tool
-alias bm_add jsb -p tri.native.run("bookmarks -a " + JS_ARG)
-alias bm_del jsb -p tri.native.run("bookmarks -d " + JS_ARG)
-bind a composite js document.location.href | bm_add
-bind A composite js document.location.href | bm_del
+bind a js tri.native.run(`bookmarks -a '${document.title} -- ${document.location.href}'`)
+bind A js tri.native.run(`bookmarks -d '${document.title} -- ${document.location.href}'`)
+
+" Open video with mpv
+bind v js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'`)
+
+" RSS
+" alias save_rss jsb -p tri.native.run("cat >> ~/.newesboat/urls", JS_ARG)
+
+" RSS Youtube
+alias save_rss jsb -p tri.native.run("newsboat-yt", JS_ARG)
+set rsscmd save_rss %u
 
 vim: set filetype=vim:

@@ -3,7 +3,7 @@
 #
 #
 super + w
-	apulse firefox
+	firefox
 
 super + e
 	emacs
@@ -30,9 +30,13 @@ super + d
 
 # Launch or delete bookmarks
 super + b
-        bookmarks
+	bookmarks
 super + B
-        bookmarks -d
+	bookmarks -d
+
+# Add youtube rss feed
+super + n
+	newsboat-yt
 
 super + q
 	dmenufire

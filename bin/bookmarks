@@ -2,13 +2,17 @@
 BROWSER=${BROWSER:-firefox}
 DELETE=false
 FILE="$HOME/.bookmarks"
+SORT="sort -f"
 
 delete_bookmark() {
     rg -v -x -F "$1" "$FILE" > "bookmark.tmp"; mv "bookmark.tmp" "$FILE"
 }
 
 open_bookmark() {
-    [ -n "$1" ] && $BROWSER "$1"
+    if [ -n "$1" ] ; then
+         url=$(echo "$1" | awk -F ' -- ' '{print $2}')
+         $BROWSER "$url"
+    fi
 }
 
 add_bookmark() {
@@ -34,10 +38,10 @@ shift $((OPTIND-1))
 
 if [ $DELETE = true ]; then
     if [ -z "$1" ]; then
-        delete_bookmark "$(bat "$FILE" | rofi -dmenu -i -p "Delete bookmark")"
+        delete_bookmark "$(bat "$FILE" | $SORT | rofi -dmenu -i -p "Delete bookmark")"
     else
         delete_bookmark "$1"
     fi
 else
-    open_bookmark "$(bat "$FILE" | rofi -dmenu -i -p "Open bookmark")"
+    open_bookmark "$(bat "$FILE" | $SORT | rofi -dmenu -i -p "Open bookmark")"
 fi
