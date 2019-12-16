@@ -22,6 +22,8 @@ bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
+bind gd tabdetach
+bind gD composite tabduplicate | tabdetach
 
 " Better hinting
 bindurl youtu((\.be)|(be\.com)) f hint -J
@@ -44,5 +46,6 @@ bind v js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'
 " RSS Youtube
 alias save_rss jsb -p tri.native.run("newsboat-yt", JS_ARG)
 set rsscmd save_rss %u
+bind gy js tri.native.run(`newsboat-yt '${document.location.href}')
 
 vim: set filetype=vim:
