@@ -9,6 +9,5 @@ visualizer_output_name = "vs_fifo"
 visualizer_sync_interval = "30"
 visualizer_in_stereo = "yes"
 visualizer_type = "spectrum"
-visualizer_sample_multiplier = 2
 visualizer_look = "●●"
 
