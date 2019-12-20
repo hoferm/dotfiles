@@ -1,8 +1,21 @@
+sanitize tridactyllocal tridactylsync
+
 set newtab about:blank
 set searchengine duckduckgo
 set colors base16-github
+set theme shydactyl
 set modeindicator false
 set modeindicatorshowkeys true
+set allowautofocus false
+set tabobencontaineraware true
+set hintdelay 100
+
+" Search URLS
+set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
+set searchurls.crates https://crates.io/search?q=%s
+set searchurls.reddit https://old.reddit.com/r/%s
+set searchurls.rust https://doc.rust-lang.org/std/index.html?search=%s
+set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 
 guiset_quiet hoverlink right
 guiset_quiet tabs count
@@ -46,6 +59,6 @@ bind v js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'
 " RSS Youtube
 alias save_rss jsb -p tri.native.run("newsboat-yt", JS_ARG)
 set rsscmd save_rss %u
-bind gy js tri.native.run(`newsboat-yt '${document.location.href}')
+bind gy js tri.native.run(`newsboat-yt '${document.location.href}'`)
 
 vim: set filetype=vim:
