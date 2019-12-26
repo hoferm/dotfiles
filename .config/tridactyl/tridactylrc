@@ -7,11 +7,12 @@ set theme shydactyl
 set modeindicator false
 set modeindicatorshowkeys true
 set allowautofocus false
-set tabobencontaineraware true
+set tabobencontaineraware false
 set hintdelay 100
 
 " Search URLS
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
+set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.crates https://crates.io/search?q=%s
 set searchurls.reddit https://old.reddit.com/r/%s
 set searchurls.rust https://doc.rust-lang.org/std/index.html?search=%s
@@ -35,6 +36,7 @@ bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
+bind <Space> nohlsearch
 bind gd tabdetach
 bind gD composite tabduplicate | tabdetach
 
