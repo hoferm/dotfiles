@@ -6,6 +6,8 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'itchyny/lightline.vim'
 
+Plug 'editorconfig/editorconfig-vim'
+
 Plug 'w0rp/ale'
 Plug 'vim-utils/vim-cscope'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
@@ -156,7 +158,7 @@ set inccommand=nosplit
 let g:python3_host_prog = "/bin/python"
 
 syntax enable
-colorscheme base16-gruvbox-dark-hard
+colorscheme base16-tomorrow-night
 " aug RustColor
 "     au!
 "     au FileType rust colorscheme blue
