@@ -16,7 +16,7 @@ open_bookmark() {
 }
 
 add_bookmark() {
-    [ -n $(rg -x -F "$1" "$FILE") ] && echo "$1" >> "$FILE"
+    [ -z "$(rg -x -F "$1" "$FILE")" ] && echo "$1" >> "$FILE"
 }
 
 while getopts ":da:" opt; do
