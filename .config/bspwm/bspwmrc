@@ -12,7 +12,7 @@ fi
 
 xsetroot -cursor_name left_ptr &
 
-bspc monitor DVI-I-1 -d       
+bspc monitor DVI-I-1 -d main web dev media random music
 # bspc monitor HDMI-0 -d III
 
 bspc config border_width          1
@@ -28,5 +28,6 @@ bspc config honor_size_hints      false
 
 bspc rule -a scratchpad state=floating sticky=on
 bspc rule -a *:org-capture state=floating follow=on
+bspc rule -a mpv state=floating center=on
 bspc rule -a mpv-firefox desktop=^4 state=floating
 # st -c scratchpad -e ~/bin/scratch &
