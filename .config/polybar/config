@@ -22,11 +22,12 @@ line-size = 2
 padding = 1
 module-margin = 1
 
-font-0 = "Source Code Pro:pixelsize=12;2"
-font-1 = "FontAwesome:size=12;3"
-font-2 = "Material Icons:size=12;3"
-font-3 = "Weather Icons:size=12;3"
-font-4 = "github-octicons:size=12;3"
+font-0 = "SauceCodePro Nerd Font:pixelsize=12.5;2"
+font-1 = "FontAwesome:size=11;3"
+font-2 = "Material Icons:size=11;3"
+font-3 = "Weather Icons:size=11;3"
+font-4 = "github-octicons:size=11;3"
+font-5 = "Source Han Sans:pixelsize=12;2"
 
 modules-left = date bspwm xwindow
 modules-center = mpd
