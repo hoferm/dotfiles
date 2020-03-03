@@ -1,41 +1,87 @@
-let mapleader = "\\"
+let mapleader = " "
 
 " Plugins {{{1
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-Plug 'itchyny/lightline.vim'
+Plug 'antoinemadec/coc-fzf'
+
+" UI enhancements
+" Plug 'itchyny/lightline.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'morhetz/gruvbox'
+Plug 'machakann/vim-highlightedyank'
+" Plug 'andymass/vim-matchup'
+Plug 'airblade/vim-gitgutter'
 
 Plug 'editorconfig/editorconfig-vim'
 
-Plug 'w0rp/ale'
 Plug 'vim-utils/vim-cscope'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+
+" QOL
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'farmergreg/vim-lastplace'
 
-" Plug 'ncm2/ncm2'
-" Plug 'roxma/nvim-yarp'
-
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-tmux'
-Plug 'ncm2/ncm2-path'
-
-Plug 'SirVer/ultisnips', { 'for': 'tex' }
-Plug 'honza/vim-snippets', { 'for': 'tex' }
+" Language
+Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+" Plug 'arzg/vim-rust-syntax-ext', { 'for': 'rust' }
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
 Plug 'lervag/vimtex', { 'for': 'tex' }
-
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 call plug#end()
 
 " Plugin Settings {{{1
+" Lightline {{{2
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+function! GitStatus()
+    let [a,m,r] = GitGutterGetHunkSummary()
+    return printf('+%d ~%d -%d', a, m, r)
+endfunction
+let g:lightline = {
+            \ 'colorscheme': 'wombat',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             ['gitgutter', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+            \   'right': [ [ 'lineinfo' ],
+            \              [ 'percent' ],
+            \              [ 'currentfunction', 'cocstatus', 'fileformat', 'fileencoding', 'filetype' ] ]
+            \ },
+            \ 'component_function': {
+            \   'cocstatus': 'coc#status',
+            \   'currentfunction': 'CocCurrentFunction',
+            \   'gitbranch': 'FugitiveHead',
+            \   'gitgutter': 'GitStatus'
+            \ },
+            \ }
+" Airline {{{2
+let g:airline_theme = 'gruvbox'
+let g:airline_powerline_fonts = 1
+let g:airline_section_z = '%3l/%L:%3v'
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+let g:airline#extensions#coc#enabled = 1
+let g:airline_section_warning = ''
+let g:airline_section_error = ''
+" Tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_tab_type = 0
+let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+let g:airline#extensions#tabline#buffers_label = 'B'
+let g:airline#extensions#tabline#tabs_label = 'T'
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 " FZF {{{2
 let g:fzf_colors =
           \ { 'fg':  ['fg', 'Normal'],
@@ -45,6 +91,7 @@ let g:fzf_colors =
             \ 'bg+': ['bg', 'CursorLine', 'CursorColumn'],
             \ 'hl+': ['fg', 'String'] }
 let g:fzf_command_prefix = 'Fzf'
+let $FZF_DEFAULT_COMMAND = 'fd --hidden --type f --exclude ".git/"'
 
 let g:rg_command = '
   \ rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --color "never"
@@ -65,25 +112,22 @@ let g:go_list_type = "locationlist"
 let g:go_metalinter_autosave = 0
 let g:go_metalinter_autosave_enabled = ['vet', 'golint', 'errcheck']
 
-augroup vim-Go
-	au!
-	au FileType go nmap <Leader>i <Plug>(go-info)
-	au BufWritePost *.go GoBuild
-augroup END
-
 " vim-lastplace {{{2
 let g:lastplace_open_folds = 0
 " vim-rust {{{2
-let g:rustfmt_autosave = 0
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
 
 " coc {{{2
-set cmdheight=1
+set cmdheight=2
 set updatetime=300
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
 function! s:check_back_space() abort
@@ -91,52 +135,12 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" coc-actions
+function! s:cocActionsOpenFromSelected(type) abort
+  execute 'CocCommand actions.open ' . a:type
+endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" ale {{{2
-let g:ale_set_highlights = 0
-let g:ale_lint_on_text_changed = "never"
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_enter = 0
-let g:ale_rust_rls_config = {
-    \ 'rust': {
-        \ 'all_targets': 1,
-        \ 'build_on_save': 1,
-        \ 'clippy_preference': 'on'
-    \ }
-    \ }
-let g:ale_rust_rls_toolchain = ""
-let g:ale_linters = {'rust': ['rls']}
-
-nnoremap <silent> K :ALEHover<CR>
-nnoremap <silent> gd :ALEGoToDefinition<CR>
-
-" Markdown {{{2
-let g:mkdp_browser = 'firefox'
-
-" Folding {{{1
-set foldmethod=marker
-set foldlevelstart=0
-
-function! NeatFoldText() "
-  let line = ' ' . substitute(getline(v:foldstart), '^\s*"\?\s*\|\s*"\?\s*{{' . '{\d*\s*', '', 'g') . ' '
-  let lines_count = v:foldend - v:foldstart + 1
-  let lines_count_text = '/' . printf("%10s", lines_count . ' lines') . ' /'
-  let foldchar = matchstr(&fillchars, 'fold:\zs.')
-  let foldtextstart = strpart('+' . repeat(foldchar, v:foldlevel*2) . line, 0, (winwidth(0)*2)/3)
-  let foldtextend = lines_count_text . repeat(foldchar, 8)
-  let foldtextlength = strlen(substitute(foldtextstart . foldtextend, '.', 'x', 'g')) + &foldcolumn
-  return foldtextstart . repeat(foldchar, winwidth(0)-foldtextlength) . foldtextend
-endfunction
-set foldtext=NeatFoldText()
 
 " Misc {{{1
 " cscope {{{2
@@ -158,7 +162,8 @@ set inccommand=nosplit
 let g:python3_host_prog = "/bin/python"
 
 syntax enable
-colorscheme base16-tomorrow-night
+colorscheme gruvbox
+let g:gruvbox_invert_selection = 1
 " aug RustColor
 "     au!
 "     au FileType rust colorscheme blue
@@ -178,16 +183,17 @@ set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
 
-set ttyfast
 set nobackup
 
 set autoindent
 set copyindent
 
 set tabstop=8
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+set shiftwidth=8
+set softtabstop=8
+set noexpandtab
+
+set scrolloff=2
 
 set showmatch
 set comments=s1:/*,mb:\ *,e1x:\ */
@@ -200,7 +206,10 @@ aug numbertoggle
     au BufLeave,CmdlineEnter,CmdwinEnter,FocusLost,InsertEnter * set norelativenumber | redraw
 aug END
 
+set signcolumn=yes
+
 set showcmd
+set laststatus=2
 
 set incsearch
 set ignorecase
@@ -215,113 +224,22 @@ set backspace=indent,eol,start
 set wildignore=*.swp,*.bak,*.pyc,*.class
 
 " listchars
-set list
 set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:>-
 
-aug RustList
-	au!
-	au FileType rust set nolist
-
-" devicon fzf {{{2
-
-" Files + devicons
-function! Fzf_files_with_dev_icons(command)
-	let l:fzf_files_options = '--preview "bat --color always --style numbers {2..} | head -'.&lines.'"'
-	function! s:edit_devicon_prepended_file(item)
-		let l:file_path = a:item[4:-1]
-		execute 'silent e' l:file_path
-	endfunction
-	call fzf#run({
-		\ 'source': a:command.' | devicon-lookup',
-		\ 'sink':   function('s:edit_devicon_prepended_file'),
-		\ 'options': '-m ' . l:fzf_files_options,
-		\ 'down':    '40%' })
-endfunction
-function! Fzf_git_diff_files_with_dev_icons()
-	let l:fzf_files_options = '--ansi --preview "sh -c \"(git diff --color=always -- {3..} | sed 1,4d; bat --color always --style numbers {3..}) | head -'.&lines.'\""'
-	function! s:edit_devicon_prepended_file_diff(item)
-		echom a:item
-		let l:file_path = a:item[7:-1]
-		echom l:file_path
-		let l:first_diff_line_number = system("git diff -U0 ".l:file_path." | rg '^@@.*\+' -o | rg '[0-9]+' -o | head -1")
-		execute 'silent e' l:file_path
-		execute l:first_diff_line_number
-	endfunction
-	call fzf#run({
-		\ 'source': 'git -c color.status=always status --short --untracked-files=all | devicon-lookup',
-		\ 'sink':   function('s:edit_devicon_prepended_file_diff'),
-		\ 'options': '-m ' . l:fzf_files_options,
-		\ 'down':    '40%' })
-endfunction
- " Open fzf Files " Open fzf Files
-map <C-f> :call Fzf_files_with_dev_icons("fd -t f .")<CR> " :Files
-map <C-g> :call Fzf_files_with_dev_icons("git ls-files \| uniq")<CR> " :GFiles
-
-" Status bar {{{2
-" status bar info and appearance
-" function! StatusDir()
-"     if &buftype != "nofile"
-"         let d = expand("%:p:~:h")
-"         if d != fnamemodify(getcwd(), ":~")
-"         return expand("%:p:.:h").'/'
-"         else
-"         return ''
-"         endif
-"     else
-"         return ''
-"     endif
-" endfunction
-
-" function! OtherBuffers()
-"     let buffers_txt = ""
-"     redir => buffers_txt
-"     silent ls
-"     redir END
-"     let lines = []
-"     for line in split(buffers_txt, "\n")
-"         let bufnr = split(line)[0]
-"         if bufnr != bufnr("%")
-"             call add(lines, split(line)[0])
-"         endif
-"     endfor
-"     return lines
-" endfunction
-
-" function! StatusOtherBuffers()
-"     return join(map(OtherBuffers(), '"·".v:val'), ' ')
-" endfunction
-
-" function! PWD()
-"     return fnamemodify(getcwd(), ":~")
-" endfunction
-
-set laststatus=2
-" set statusline=%#SLDelim#@:%#SLSpecial#%{PWD()}
-" set statusline+=%#SLDelim#:%#SLNumber#%n%#SLDelim#: "buffer number
-" set statusline+=%#SLDirectory#%{expand('%:h')!=''?StatusDir():''} "file path, if buffer is a file
-" set statusline+=%#SLIdentifier#%{expand('%:h')!=''?expand('%:t'):'[unnamed]'}%#Boolean#%m%r "buffer name and modifiers
-" set statusline+=%#SLDelim#%{fugitive#head()!=''?':':''}%#SLVCS#%{fugitive#head()}
-" " au VimEnter * au! fugitive_statusline
-" set statusline+=\ %#SLCharacter#%{StatusOtherBuffers()} "list of other buffers
-" set statusline+=\ %=\%#SLConstant#%{&fenc}%#SLDelim#:%#SLType#%{&ft}%#SlDelim#:%#SLFunction#%{&fo}%#SLDelim#:%#SLSpellBad#%{&spell?&spl:''}
-" set statusline+=%#SLNumber#\ %l:%L,%v
-" " set statusline+=%#Warningmsg#
-" " set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" }}}
-" set statusline+=%{expand('%:h')!=''?expand('%:t'):'[unnamed]'}%m%r
-" set rulerformat=%28(%20(%t%m%r\ %l,%c%V%)%=%P%)
 set wildmenu
 set wildmode=full
-" set statusline=\ \%f%m%r%h%w\ ::\ %y\ [%{&ff}]\%=\ [%p%%:\ %l/%L]\
-" set cmdheight=1
+
+" Folding
+set foldmethod=syntax
+set nofoldenable
+set foldnestmax=2
 
 let g:is_bash=1                         " bash syntax the default for hlighting
 
 " Close quickfix window if it is the only window.
 aug QFClose
-	au!
-	au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
+    au!
+    au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
 
 function! SynGroup()
@@ -340,8 +258,8 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 
 augroup TrailingWhitespace
-	autocmd!
-	autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+    autocmd!
+    autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 augroup END
 
 command! -nargs=+ MapToggle call MapToggle(<f-args>)
@@ -360,35 +278,46 @@ nnoremap N Nzz
 nnoremap <C-U> <C-U>zz
 nnoremap <C-D> <C-D>zz
 
+" Auto close bracket
+inoremap {<CR> {<CR>}<C-c>O
+
+" Enable 'very magic' by default
+nnoremap ? ?\v
+nnoremap / /\v
+cnoremap %s/ %sm/
+
+" Splits
+nnoremap <Leader>wv :vsplit<CR>
+nnoremap <Leader>ws :split<CR>
+nnoremap <Leader>wc :close<CR>
+" Closes all panes but the current one
+nnoremap <Leader>wo :only<CR>
+" Hide pane
+nnoremap <Leader>wh :hide<CR>
 " Move between panes
-map <up> <C-W><up>
-map <down> <C-W><down>
-map <left> <C-W><left>
-map <right> <C-W><right>
+nnoremap <Leader>wk <C-W><up>
+nnoremap <Leader>wj <C-W><down>
+nnoremap <Leader>wh <C-W><left>
+nnoremap <Leader>wl <C-W><right>
+nnoremap <Leader>wr <C-W>r
+" Resize windows
+nnoremap <Leader>w= <C-W>=
 
 inoremap <Esc> <Esc>
 nnoremap <Esc> <Esc>
 vnoremap <Esc> <Esc>
-nnoremap S "_diwP
 
 nnoremap zo o<CR>
 
+" Copy to end of line
 nnoremap Y y$
-
-nnoremap <Leader>y "+y
-vnoremap <Leader>y "+y
-nnoremap <Leader>p "+p
-nnoremap <Leader>P "+P
 
 " FZF bindings
 " nnoremap <Leader><SPACE> :FzfTags<CR>
 nnoremap <Leader>e :FZF<CR>
 nnoremap <Leader>o :FzfBTags<CR>
 nnoremap <Leader>b :FzfBuffers<CR>
-nnoremap <Leader>gg :FzfRg<CR>
-
-" Rust bindings
-nnoremap <silent> <Leader><Leader>r :RustFmt<CR>
+" nnoremap <Leader>gg :FzfRg<CR>
 
 " incsearch for range commands
 cnoremap $t <CR>:t''<CR>:noh<CR>
@@ -431,22 +360,63 @@ endfunction
 
 " Buffer specific bindings
 " Close buffer
-nnoremap <Leader>q :bd<CR>
-nnoremap <space> :w<CR>
+nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>fs :w<CR>
 nnoremap <CR> :q<CR>
 
-nnoremap <silent> <Tab> :silent noh<CR>
+nnoremap <silent> <Leader><Tab> :silent noh<CR>
+
+" Folding with tab
+nnoremap <Tab> za
 
 " clipboard
-vmap <Leader>cx :w !xsel -i -b<CR><CR>
-nmap <leader>px :r !xsel -b<CR>
+" vmap <silent> <Leader>cx :w !xsel -i -b<CR><CR>
+" nmap <silent> <leader>px :r !xsel -b<CR>
+nnoremap <Leader>y "+y
+vnoremap <Leader>y "+y
+nnoremap <Leader>p "+p
+nnoremap <Leader>P "+P
 
-" fugitive bindings
-" nnoremap <Leader>gs :Gstatus<CR>
-" nnoremap <Leader>gd :Gdiff<CR>
-" nnoremap <Leader>gb :Gblame<CR>
-" nnoremap <Leader>gr :Gread<CR>
-" nnoremap <Leader>gw :Gwrite<CR>
+" git bindings
+function! s:changebranch(branch)
+    execute 'Git checkout' . a:branch
+    call feedkeys("i")
+endfunction
+
+" Use fzf for git branch completion
+command! -bang Gbranch call fzf#run({
+            \ 'source': 'git branch -a --no-color | grep -v "^\* " ',
+            \ 'sink': function('s:changebranch')
+            \ })
+nnoremap <Leader>gc :Gbranch<CR>
+nnoremap <Leader>gg :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gp <Plug>(GitGutterPreviewHunk)
+nnoremap <Leader>gss <Plug>(GitGutterStageHunk)
+nnoremap <Leader>gu <Plug>(GitGutterUndoHunk)
+
+" coc.vim | code
+nnoremap <silent> K :<C-U>call CocActionAsync('doHover')<CR>
+nmap <silent> <Leader>cd <Plug>(coc-definition)
+nmap <silent> <Leader>cy <Plug>(coc-type-definition)
+nmap <silent> <Leader>ci <Plug>(coc-implementation)
+nmap <silent> <Leader>cr <Plug>(coc-references)
+nnoremap <silent> <Leader>cf :RustFmt<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
+" nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
+nmap <Leader>ca <Plug>(coc-codeaction)
+" nnoremap <silent> <Leader>co :<C-u>CocList outline<CR>
+nnoremap <silent> <Leader>co :CocFzfListOutline<CR>
+" function text object
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
 
 " spellchecking
 map <silent> <F5> :setlocal spell! spelllang=de_at<CR>
