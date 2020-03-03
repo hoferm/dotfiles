@@ -1,0 +1,10 @@
+#!/usr/bin/sh
+
+parse_data() {
+    if [ -n "$1" ]; then
+        path=$(echo "$1" | awk -F ' -- ' '{print $2}')
+        mpv "$path"
+    fi
+}
+
+parse_data "$(mpvmeta | rofi -dmenu -i -p "Play video")"

@@ -1,0 +1,11 @@
+#!/usr/bin/python
+import os
+from pathlib import Path
+
+home = str(Path.home())
+watch_dir = f"{home}/.config/mpv/watch_later/"
+
+for entry in os.scandir(watch_dir):
+    if entry.name.endswith(".meta"):
+        with open(entry, 'r') as f:
+            print(f.read().replace('\n', ' -- '))
