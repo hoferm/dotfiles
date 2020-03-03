@@ -1,22 +1,23 @@
 sanitize tridactyllocal tridactylsync
 
-set newtab about:blank
 set searchengine duckduckgo
 set colors base16-github
 set theme shydactyl
 set modeindicator false
 set modeindicatorshowkeys true
-set allowautofocus false
-set tabobencontaineraware false
+set allowautofocus true
+set tabopencontaineraware false
 set hintdelay 100
 
 " Search URLS
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.crates https://crates.io/search?q=%s
+set searchurls.librs https://lib.rs/search?q=%s
 set searchurls.reddit https://old.reddit.com/r/%s
 set searchurls.rust https://doc.rust-lang.org/std/index.html?search=%s
 set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
+set searchurls.yt https://youtube.com/results?search_query=%s
 
 guiset_quiet hoverlink right
 guiset_quiet tabs count
@@ -49,8 +50,8 @@ bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 
 " Bookmarking tool
-bind a js tri.native.run(`bookmarks -a '${document.title} -- ${document.location.href}'`)
-bind A js tri.native.run(`bookmarks -d '${document.title} -- ${document.location.href}'`)
+bind ga js tri.native.run(`bookmarks -a '${document.title} -- ${document.location.href}'`)
+bind gA js tri.native.run(`bookmarks -d '${document.title} -- ${document.location.href}'`)
 
 " Open video with mpv
 bind v js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'`)
