@@ -7,12 +7,10 @@ Plug 'neoclide/coc.nvim', { 'branch': 'release' }
 Plug 'antoinemadec/coc-fzf'
 
 " UI enhancements
-" Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'machakann/vim-highlightedyank'
-" Plug 'andymass/vim-matchup'
 Plug 'airblade/vim-gitgutter'
 
 Plug 'editorconfig/editorconfig-vim'
@@ -33,39 +31,12 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'arzg/vim-rust-syntax-ext', { 'for': 'rust' }
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 
 call plug#end()
 
 " Plugin Settings {{{1
-" Lightline {{{2
-function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
-endfunction
-
-function! GitStatus()
-    let [a,m,r] = GitGutterGetHunkSummary()
-    return printf('+%d ~%d -%d', a, m, r)
-endfunction
-let g:lightline = {
-            \ 'colorscheme': 'wombat',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             ['gitgutter', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-            \   'right': [ [ 'lineinfo' ],
-            \              [ 'percent' ],
-            \              [ 'currentfunction', 'cocstatus', 'fileformat', 'fileencoding', 'filetype' ] ]
-            \ },
-            \ 'component_function': {
-            \   'cocstatus': 'coc#status',
-            \   'currentfunction': 'CocCurrentFunction',
-            \   'gitbranch': 'FugitiveHead',
-            \   'gitgutter': 'GitStatus'
-            \ },
-            \ }
 " Airline {{{2
 let g:airline_theme = 'gruvbox'
 let g:airline_powerline_fonts = 1
