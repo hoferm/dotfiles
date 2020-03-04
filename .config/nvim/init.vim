@@ -33,6 +33,7 @@ Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 " Plug 'arzg/vim-rust-syntax-ext', { 'for': 'rust' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'dag/vim-fish'
 
 call plug#end()
 
