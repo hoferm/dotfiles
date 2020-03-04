@@ -14,8 +14,10 @@ set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
 set searchurls.crates https://crates.io/search?q=%s
 set searchurls.librs https://lib.rs/search?q=%s
-set searchurls.reddit https://old.reddit.com/r/%s
 set searchurls.rust https://doc.rust-lang.org/std/index.html?search=%s
+set searchurls.docsrs https://docs.rs/%s
+set searchurls.docsq https://docs.rs/releases/search?query=%s
+set searchurls.reddit https://old.reddit.com/r/%s
 set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
 set searchurls.yt https://youtube.com/results?search_query=%s
 
