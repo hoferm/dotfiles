@@ -85,6 +85,13 @@
                          (:name "Done reading"
                                 :todo "READ")
                          (:discard (:anything t))))))))
+         ("p" "Personal"
+           ((alltodo "" ((org-agenda-overriding-header "")
+                          (org-super-agenda-groups
+                            '((:name "Personal"
+                                :tag "personal")
+                               (:discard (:tag "@home" :tag "@linux" :tag "@windows"))
+                               (:discard (:anything t))))))))
          ("h" "Home"
            ((tags-todo "@home" ((org-agenda-overriding-header "Home")))))
          ("e" "Errand"
