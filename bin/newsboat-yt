@@ -1,0 +1,15 @@
+#!/usr/bin/sh
+
+URL="https://www.invidio.us/feeds/videos.xml?channel_id="
+
+add () {
+    [ -z "$1" ] || [ -z "$2" ] && exit 1
+    printf "%s%s \"yt\" \"%s\"\n" "$URL" "$1" "$2" >> "$HOME/.newsboat/urls"
+}
+
+if [ -n "$1" ] ; then
+    id=$(echo "$1" | awk -F '/' '{print $5}')
+    add "$id" "$(rofi -dmenu -p "Feed name")"
+else
+    add "$(rofi -dmenu -p "Feed URL")" "$(rofi -dmenu -p "Feed name")"
+fi
