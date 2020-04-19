@@ -24,13 +24,13 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-vinegar'
 Plug 'farmergreg/vim-lastplace'
 
 " Language
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-" Plug 'arzg/vim-rust-syntax-ext', { 'for': 'rust' }
 Plug 'lervag/vimtex', { 'for': 'tex' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'dag/vim-fish'
@@ -98,7 +98,12 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <silent><expr> <TAB>
+  \ pumvisible() ? coc#_select_confirm() :
+  \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+  \ <SID>check_back_space() ? "\<TAB>" :
+  \ coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
 
@@ -133,13 +138,15 @@ set inccommand=nosplit
 " Python 3
 let g:python3_host_prog = "/bin/python"
 
-syntax enable
-colorscheme gruvbox
-let g:gruvbox_invert_selection = 1
-" aug RustColor
-"     au!
-"     au FileType rust colorscheme blue
 filetype plugin indent on
+syntax enable
+let g:gruvbox_italic = 1
+" let g:gruvbox_bold = 0
+let g:gruvbox_invert_selection = 1
+colorscheme gruvbox
+hi link rustCommentLineDoc rustCommentLine
+hi link rustFuncCall GruvboxBlue
+hi link rustFuncName GruvboxBlue
 
 set noshowmode
 
@@ -288,7 +295,7 @@ nnoremap Y y$
 " nnoremap <Leader><SPACE> :FzfTags<CR>
 nnoremap <Leader>e :FZF<CR>
 nnoremap <Leader>o :FzfBTags<CR>
-nnoremap <Leader>b :FzfBuffers<CR>
+nnoremap <Leader>, :FzfBuffers<CR>
 " nnoremap <Leader>gg :FzfRg<CR>
 
 " incsearch for range commands
