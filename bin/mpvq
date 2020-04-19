@@ -1,5 +1,5 @@
 #!/usr/bin/sh
-
+SORT="sort -f"
 parse_data() {
     if [ -n "$1" ]; then
         path=$(echo "$1" | awk -F ' -- ' '{print $2}')
@@ -7,4 +7,4 @@ parse_data() {
     fi
 }
 
-parse_data "$(mpvmeta | rofi -dmenu -i -p "Play video")"
+parse_data "$(mpvmeta | $SORT | rofi -dmenu -i -p "Play video")"
