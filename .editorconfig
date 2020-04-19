@@ -11,3 +11,7 @@ insert_final_newline = true
 [{Makefile,gitconfig,*.go,*.c,*.h,.gitconfig}]
 indent_style = tab
 indent_size = 8
+
+[*.el]
+indent_size = 2
+
