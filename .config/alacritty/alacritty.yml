@@ -16,7 +16,7 @@ env:
 
 window:
   # Window dimensions in character columns and lines
-  # Falls back to size specified by window manager if set to 0x0.
+  # Falls back to size specified by window manager if set to #0.
   # (changes require restart)
   dimensions:
     columns: 80
@@ -29,322 +29,114 @@ window:
     x: 2
     y: 2
 
-  # Window decorations
-  # Setting this to false will result in window without borders and title bar.
   decorations: none
 
-# When true, bold text is drawn using the bright variant of colors.
-# draw_bold_text_with_bright_colors: true
-
-# Font configuration (changes require restart)
-#
-# Important font attributes like antialiasing, subpixel aa, and hinting can be
-# controlled through fontconfig. Specifically, the following attributes should
-# have an effect:
-#
-# * hintstyle
-# * antialias
-# * lcdfilter
-# * rgba
-#
-# For instance, if you wish to disable subpixel antialiasing, you might set the
-# rgba property to "none". If you wish to completely disable antialiasing, you
-# can set antialias to false.
-#
-# Please see these resources for more information on how to use fontconfig
-#
-# * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
-# * file:///usr/share/doc/fontconfig/fontconfig-user.html
-# font:
-#   # The normal (roman) font face to use.
-#   normal:
-#     family: Tamsyn # should be "Menlo" or something on macOS.
-#     # Style can be specified to pick a specific face.
-#     style: Regular
-
-#   # The bold font face
-#   bold:
-#     family: Tamsyn # should be "Menlo" or something on macOS.
-#     # Style can be specified to pick a specific face.
-#     # style: Bold
-
-#   # The italic font face
-#   italic:
-#     family: Tamsyn # should be "Menlo" or something on macOS.
-#     # Style can be specified to pick a specific face.
-#     # style: Italic
-
-#   # Point size of the font
-#   size: 14.0
-
 font:
-  # The normal (roman) font face to use.
   normal:
-    family: SauceCodePro Nerd Font # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
-    style: Regular
+    family: RobotoMono Nerd Font
+    style: Medium
 
-  # The bold font face
   bold:
-    family: SauceCodePro Nerd Font # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
+    family: RobotoMono Nerd Font
     style: Bold
 
-  # The italic font face
   italic:
-    family: SauceCodePro Nerd Font # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
-    style: Italic
+    family: RobotoMono Nerd Font
+    style: Medium Italic
 
-  # Point size of the font
-  size: 13.5
+  bold_italic:
+    family: RobotoMono Nerd Font
+    style: Bold Italic
 
-  # normal:
-  #   family: Noto Sans Mono # should be "Menlo" or something on macOS.
-  #   # Style can be specified to pick a specific face.
-  #   style: Regular
+  size: 12.0
 
-  # # The bold font face
-  # bold:
-  #   family: Noto Sans Mono # should be "Menlo" or something on macOS.
-  #   # Style can be specified to pick a specific face.
-  #   style: Bold
-
-  # # The italic font face
-  # italic:
-  #   family: Noto Sans Mono # should be "Menlo" or something on macOS.
-  #   # Style can be specified to pick a specific face.
-  #   style: Italic
-
-  # # Point size of the font
-  # size: 10.0
-
-  # Offset is the extra space around each character. offset.y can be thought of
-  # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
     x: 0
     y: 0
 
-  # Glyph offset determines the locations of the glyphs within their cells with
-  # the default being at the bottom. Increase the x offset to move the glyph to
-  # the right, increase the y offset to move the glyph upward.
   glyph_offset:
     x: 0
     y: 0
 
-  # OS X only: use thin stroke font rendering. Thin strokes are suitable
-  # for retina displays, but for non-retina you probably want this set to
-  # false.
-  use_thin_strokes: true
-
 # Should display the render timer
 debug.render_timer: false
 
-# Monokai
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x272822'
-#     foreground: '0xf8f8f2'
-
-#   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '0x272822'
-#     cursor: '0xf8f8f2'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x272822'
-#     red:     '0xf92672'
-#     green:   '0xa6e22e'
-#     yellow:  '0xf4bf75'
-#     blue:    '0x66d9ef'
-#     magenta: '0xae81ff'
-#     cyan:    '0xa1efe4'
-#     white:   '0xf8f8f2'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x75715e'
-#     red:     '0xfd971f'
-#     green:   '0x383830'
-#     yellow:  '0x49483e'
-#     blue:    '0xa59f85'
-#     magenta: '0xf5f4f1'
-#     cyan:    '0xcc6633'
-#     white:   '0xf9f8f5'
-
-# Gruvbox medium
 colors:
-  # Default colors
   primary:
-    background: '0x282828'
-    foreground: '0xd5c4a1'
+    background: '#2E3440'
+    foreground: '#D8DEE9'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x282828'
-    cursor: '0xd5c4a1'
+    text:       '#2E3440'
+    cursor:     '#D8DEE9'
 
-  # Normal colors
   normal:
-    black:   '0x282828'
-    red:     '0xfb4934'
-    green:   '0xb8bb26'
-    yellow:  '0xfabd2f'
-    blue:    '0x83a598'
-    magenta: '0xd3869b'
-    cyan:    '0x8ec07c'
-    white:   '0xd5c4a1'
+    black:      '#3B4252'
+    red:        '#BF616A'
+    green:      '#A3BE8C'
+    yellow:     '#EBCB8B'
+    blue:       '#81A1C1'
+    magenta:    '#B48EAD'
+    cyan:       '#88C0D0'
+    white:      '#E5E9F0'
 
-  # Bright colors
   bright:
-    black:   '0x665c54'
-    red:     '0xfe8019'
-    green:   '0x3c3836'
-    yellow:  '0x504945'
-    blue:    '0xbdae93'
-    magenta: '0xebdbb2'
-    cyan:    '0xd65d0e'
-    white:   '0xfbf1c7'
-
-# Tomorrow Night
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x141517'
-#     foreground: '0xc5c8c6'
-
-#   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '0x282c34'
-#     cursor: '0xabb2bf'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x141517'
-#     red:     '0xcc6666'
-#     green:   '0xb5bd68'
-#     yellow:  '0xf0c674'
-#     blue:    '0x81a2be'
-#     magenta: '0xb294bb'
-#     cyan:    '0x8abeb7'
-#     white:   '0xc5c8c6'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x969896'
-#     red:     '0xde935f'
-#     green:   '0x757d28'
-#     yellow:  '0xf9a03f'
-#     blue:    '0x2a8fed'
-#     magenta: '0xbc77a8'
-#     cyan:    '0xa3685a'
-#     white:   '0xffffff'
-# City Lights
-# Colors
-# colors:
-#   # Default colors
-#   primary:
-#     background: '0x1d252c'
-#     foreground: '0xa0b3c5'
-
-#   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '0x1d252c'
-#     cursor: '0x9caabb'
-
-#   # Normal colors
-#   normal:
-#     black:   '0x384551'
-#     red:     '0xd95468'
-#     green:   '0x8bd49c'
-#     yellow:  '0xebbf83'
-#     blue:    '0x5c748e'
-#     magenta: '0xe27e8d'
-#     cyan:    '0x41858c'
-#     white:   '0x728ca0'
-
-#   # Bright colors
-#   bright:
-#     black:   '0x56697a'
-#     red:     '0xd98e48'
-#     green:   '0x4db5bd'
-#     yellow:  '0xebbf83'
-#     blue:    '0x5ec4ff'
-#     magenta: '0xb62d65'
-#     cyan:    '0x70e1e8'
-#     white:   '0x728ca0'
-
+    black:      '#4C566A'
+    red:        '#BF616A'
+    green:      '#A3BE8C'
+    yellow:     '#EBCB8B'
+    blue:       '#81A1C1'
+    magenta:    '#B48EAD'
+    cyan:       '#8FBCBB'
+    white:      '#ECEFF4'
 draw_bold_text_with_bright_colors: false
 
-# Default
+# OneDark
 # colors:
 #   # Default colors
 #   primary:
-#     background: '0x161616'
-#     foreground: '0xdddddd'
+#     background: '#1e2127' # Alt: #282C34
+#     foreground: '#abb2bf'
 
 #   # Colors the cursor will use if `custom_cursor_colors` is true
-#   cursor:
-#     text: '0x161616'
-#     cursor: '0xdddddd'
+#   # cursor:
+#   #   text: '#1e2127'
+#   #   cursor: '#abb2bf'
 
 #   # Normal colors
 #   normal:
-#     black:   '0x666666'
-#     red:     '0xd54e53'
-#     green:   '0x98971a'
-#     yellow:  '0xd79921'
-#     blue:    '0x5687b8'
-#     magenta: '0x5e468c'
-#     cyan:    '0x2b7694'
-#     white:   '0xdddddd'
+#     black:   '#1e2127'
+#     red:     '#e06c75'
+#     green:   '#98c379'
+#     yellow:  '#d19a66'
+#     blue:    '#61afef'
+#     magenta: '#c678dd'
+#     cyan:    '#56b6c2'
+#     white:   '#abb2bf'
 
 #   # Bright colors
 #   bright:
-#     black:   '0x666666'
-#     red:     '0xff3334'
-#     green:   '0xb8bb26'
-#     yellow:  '0xfabd2f'
-#     blue:    '0x40bdff'
-#     magenta: '0x7f62b3'
-#     cyan:    '0x47858e'
-#     white:   '0xdddddd'
+#     black:   '#5c6370'
+#     red:     '#e06c75'
+#     green:   '#98c379'
+#     yellow:  '#d19a66'
+#     blue:    '#61afef'
+#     magenta: '#c678dd'
+#     cyan:    '#56b6c2'
+#     white:   '#abb2bf'
 
 #   # Dim colors (Optional)
 #   dim:
-#     black:   '0x333333'
-#     red:     '0xf2777a'
-#     green:   '0x99cc99'
-#     yellow:  '0xffcc66'
-#     blue:    '0x6699cc'
-#     magenta: '0xcc99cc'
-#     cyan:    '0x66cccc'
-#     white:   '0xcccccc'
-
-# Visual Bell
-#
-# Any time the BEL code is received, Alacritty "rings" the visual bell. Once
-# rung, the terminal background will be set to white and transition back to the
-# default background color. You can control the rate of this transition by
-# setting the `duration` property (represented in milliseconds). You can also
-# configure the transition function by setting the `animation` property.
-#
-# Possible values for `animation`
-# `Ease`
-# `EaseOut`
-# `EaseOutSine`
-# `EaseOutQuad`
-# `EaseOutCubic`
-# `EaseOutQuart`
-# `EaseOutQuint`
-# `EaseOutExpo`
-# `EaseOutCirc`
-# `Linear`
+#     black:   '#333333'
+#     red:     '#f2777a'
+#     green:   '#99cc99'
+#     yellow:  '#ffcc66'
+#     blue:    '#6699cc'
+#     magenta: '#cc99cc'
+#     cyan:    '#66cccc'
+#     white:   '#cccccc'
 #
 # To completely disable the visual bell, set its duration to 0.
-#
 visual_bell:
   animation: EaseOutExpo
   duration: 0
@@ -404,16 +196,6 @@ cursor.style: Beam
 
 # Live config reload (changes require restart)
 live_config_reload: true
-
-# Shell
-#
-# You can set shell.program to the path of your favorite shell, e.g. /bin/fish.
-# Entries in shell.args are passed unmodified as arguments to the shell.
-#
-# shell:
-#   program: /bin/bash
-#   args:
-#     - --login
 
 # Key bindings
 #
