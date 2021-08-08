@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+ddcutil setvcp 10 1 ; ddcutil --display 2 setvcp 10 1

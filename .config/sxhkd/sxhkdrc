@@ -3,74 +3,85 @@
 #
 #
 super + w
-	firefox
+    firefox
 
 super + e
-	emacs
+    tdrop -ma -w -16 -h -52 -y 42 -x 6 emacs
+
+super + shift + e
+    dmenuunicode
 
 super + x
-	org-capture
+    tdrop -ma -w -16 -y 43 -x 6 org-capture
 
 # terminal emulator
 super + Return
-	alacritty
+    alacritty
 
 super + shift + Return
-	alacritty -e tmux
+    alacritty -e tmux
 
-# super + shift + Return
-# 	id=$(cat /tmp/scratchid);\
-# 	bspc node $id --flag hidden; bspc node -f $id
+super + {_,shift +} z
+    picom-trans -c {80, 100}
+
+super + {_,shift +} space
+    tdrop -ma -w -16 -y 42 -x 6 {-h -52,_} -s dropdown -f "--class dropdown" alacritty
+
+super + {_,shift +} alt + {1-9}
+    tdrop {_,--clear} -n {1-9} current
 
 # program launcher
 super + p
-	rofi -show run
+    rofi -show run
 super + d
-	rofi-pass
+    rofi-pass
 
 # Launch or delete bookmarks
 super + b
-	bookmarks
+    bookmarks
 super + B
-	bookmarks -d
+    bookmarks -d
 
 # Add youtube rss feed
 super + n
-	newsboat-yt
+    newsboat-yt
 
 super + q
-	dmenufire
+    bspc node -c
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+    pkill -USR1 -x sxhkd && reloadpolybar &
+
+super + g; {space, p, n, s, y, r, z, 9, 0}
+    mpc {toggle, prev, next, stop, single, repeat, shuffle, volume -2, volume +2}
 
 XF86AudioPlay
-	mpc toggle
+    mpc toggle
 
 XF86AudioNext
-	mpc next
+    mpc next
 
 XF86AudioPrev
-	mpc prev
+    mpc prev
 
 XF86AudioStop
-	mpc stop
+    mpc stop
 
 XF86AudioMute
-	amixer -q set Master toggle
+    volctrl toggle
 
 XF86AudioRaiseVolume
-	amixer -q set Master 1+ unmute
+    volctrl up
 
 XF86AudioLowerVolume
-	amixer -q set Master 1- unmute
+    volctrl down
 
 super + shift + r
-	sudo reboot
+    sudo reboot
 
 super + shift + Delete
-	sudo poweroff
+    sudo poweroff
 
 #
 # bspwm hotkeys
@@ -78,23 +89,23 @@ super + shift + Delete
 
 # quit bspwm normally
 super + alt + Escape
-	pkill -x panel; bspc quit
+    pkill -x panel; bspc quit
 
 # close and kill
 super + {_,shift + }c
-	bspc node -{c,k}
+    bspc node -{c,k}
 
 # alternate between the tiled and monocle layout
 super + m
-	bspc desktop -l next
+    bspc desktop -l next
 
 # if the current node is automatic, send it to the last manual, otherwise pull the last leaf
 super + y
-	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+    bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 
 # swap the current node and the biggest node
-super + {shift} + g
-	bspc node -s biggest{.local.same_class.!focused}
+# super + {shift} + g
+#    bspc node -s biggest{.local.same_class.!focused}
 
 
 #
@@ -103,11 +114,11 @@ super + {shift} + g
 
 # set the window state
 super + {t,shift + t,s}
-	bspc node -t {tiled,pseudo_tiled,floating}
+    bspc node -t {tiled,pseudo_tiled,floating}
 
 # set the node flags
 super + ctrl + {x,y,z}
-	bspc node -g {locked,sticky,private}
+    bspc node -g {locked,sticky,private}
 
 #
 # focus/swap
@@ -115,33 +126,33 @@ super + ctrl + {x,y,z}
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
-	bspc node -{f,s} {west,south,north,east}
+    bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
 super + {shift + p,b,comma,period}
-	bspc node -f @{parent,brother,first,second}
+    bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }Tab
-	bspc node -f {next,prev}.local
+    bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+    bspc desktop -f {prev,next}.local
 
 # focus the last node/desktop
 super + {grave,Tab}
-	bspc {node,desktop} -f last
+    bspc {node,desktop} -f last
 
 # focus the older or newer node in the focus history
 super + {o,i}
-	bspc wm -h off; \
-	bspc node {older,newer} -f; \
-	bspc wm -h on
+    bspc wm -h off; \
+    bspc node {older,newer} -f; \
+    bspc wm -h on
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+    bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
@@ -149,19 +160,19 @@ super + {_,shift + }{1-9,0}
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
+    bspc node -p {west,south,north,east}
 
 # preselect the ratio
 super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
+    bspc node -o 0.{1-9}
 
 # cancel the preselection for the focused node
 super + ctrl + space
-	bspc node -p cancel
+    bspc node -p cancel
 
 # cancel the preselection for the focused desktop
 super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+    bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
 #
 # move/resize
@@ -169,24 +180,24 @@ super + ctrl + shift + space
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+    bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
 super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+    bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
 super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+    bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # flip
 super + {_,shift} + {f,v}
-	bspc node {@/,@parent} -F {horizontal,vertical}
+    bspc node {@/,@parent} -F {horizontal,vertical}
 
 # rotate
 super + r
-	bspc node @parent -R 90
+    bspc node @parent -R 90
 
 # change gap size
 super + {plus,minus}
-	bspwm-gapresize {+,-}
+    bspwm-gapresize {+,-}

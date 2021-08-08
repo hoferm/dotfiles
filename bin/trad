@@ -1,0 +1,43 @@
+#!/usr/bin/sh
+BROWSER=${BROWSER:-firefox}
+FROM="fr"
+TO="de"
+
+if [ "$#" -ne 3 ]; then
+    echo "Not enough arguments"
+    exit 1
+fi
+
+case $1 in
+    "fr")
+        FROM="fr"
+        ;;
+    "de")
+        FROM="de"
+        ;;
+    "en")
+        FROM="en"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+case $2 in
+    "fr")
+        TO="fr"
+        ;;
+    "de")
+        TO="de"
+        ;;
+    "en")
+        TO="en"
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+URL="https://www.deepl.com/translator#$FROM/$TO/$3"
+
+$BROWSER --new-window $URL

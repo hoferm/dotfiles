@@ -1,0 +1,14 @@
+#!/usr/bin/sh
+gap=$(bspc config window_gap)
+
+if [ $# -eq 0 ]; then
+    exit 1
+fi
+
+case "$1" in
+    "+" ) gap=$(($gap + 1)) ;;
+    "-" ) gap=$(($gap - 1)) ;;
+    * ) exit 1 ;;
+esac
+
+bspc config window_gap $gap

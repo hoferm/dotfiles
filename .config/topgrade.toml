@@ -5,7 +5,10 @@
 #]
 
 # Same options as the command line flag
-disable = ["emacs", "git", "go"]
+disable = ["node", "git_repos", "go", "stack"]
+
+# [linux]
+# enable_tlmgr = true
 
 # List of remote machines with Topgrade installed on them
 #remote_topgrades = ["toothless", "pi", "parnas"]
@@ -25,3 +28,6 @@ disable = ["emacs", "git", "go"]
 # Custom commands
 #[commands]
 #"Python Environment" = "~/dev/.env/bin/pip install -i https://pypi.python.org/simple -U --upgrade-strategy eager jupyter"
+
+no_retry = true
+cleanup = true

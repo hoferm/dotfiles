@@ -1,9 +1,16 @@
-setxkbmap -option caps:escape
+setxkbmap -option caps:swapescape
 setxkbmap -option compose:ralt
-setxkbmap -layout us,at -option grp:shift_toggle -option grp_led:scroll
+# setxkbmap -layout us,at -option grp:shift_toggle -option grp_led:scroll
+xset r rate 300 50
 unclutter --timeout 2 &
-feh --bg-fill ~/pictures/wallpaper/tmp.jpg
+setbg &
 redshift &
 xset m 0 0
+xset s 300 5
+xset -dpms
+xss-lock -n /usr/libexec/xsecurelock/dimmer -l -- xsecurelock &
 picom -b
-exec bspwm
+xsetroot -cursor_name left_ptr &
+xrandr --output DVI-I-1 --auto --output HDMI-0 --auto --left-of DVI-I-1
+dwmblocks &
+exec dwm

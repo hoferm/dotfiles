@@ -1,0 +1,22 @@
+#!/usr/bin/python
+from argparse import ArgumentParser
+import hashlib
+from pathlib import Path
+
+parser = ArgumentParser()
+parser.add_argument('name', type=str, help='Name for the playlist')
+parser.add_argument('path', type=str, help='Path to playlist')
+
+args = parser.parse_args()
+path = str.encode(args.path)
+
+md5 = hashlib.md5()
+md5.update(path)
+md5_digest = md5.hexdigest()
+
+filename = md5_digest.upper()
+home = str(Path.home())
+watch_dir = f"{home}/.config/mpv/watch_later"
+meta_path = f"{watch_dir}/{filename}.meta"
+with open(meta_path, 'a') as f:
+    f.write(f"[]{args.name}\n{args.path}")

@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t -*-
 
 ;; (set-face-attribute 'default t :font "Source Code Pro-16")
-(setq doom-font (font-spec :family "SauceCodePro Nerd Font Mono" :size 18))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :style "medium"))
 
 (setq projectile-project-search-path '("~/projects/c/"
                                        "~/projects/rust/"))
@@ -17,11 +17,15 @@
 
 (setq deft-directory "~/org/notes/")
 
-(load-theme 'doom-dracula t)
-;; (setq doom-theme)
+(load-theme 'doom-one-light t)
 
-(setq lsp-rust-server 'rust-analyzer)
-;; (setq lsp-rust-show-hover-context nil)
+(setq org-agenda-hide-tags-regexp ".")
+
+(setq org-agenda-prefix-format
+  '((agenda . " %i %-12:c%?-12t% s")
+     (todo . " ")
+     (tags . " %i %-12:c")
+     (search . "%i %-12:c")))
 
 (setq
  org-agenda-compact-blocks t
@@ -124,18 +128,6 @@
   :config
   (org-super-agenda-mode))
 
-;; (defun my-agenda-prefix ()
-;;   (format "%s" (my-agenda-indent-string (org-current-level))))
-
-;; (defun my-agenda-indent-string (level)
-;;   (if (= level 1)
-;;       ""
-;;     (let ((str ""))
-;;       (while (> level 2)
-;;         (setq level (1- level)
-;;               str (concat str "--")))
-;;       (concat str ">"))))
-
 (transient-append-suffix 'magit-log "-f"
   '("-z" "First Parent" "--first-parent"))
 (define-transient-command magit-blame ()
@@ -190,16 +182,19 @@
   org-log-done 'time
   org-tags-column -78
   org-indent-mode t
+  org-startup-folded t
   org-pretty-entities t
   org-agenda-property-list '("PROGRESS" "PAGES")
-  org-hide-emphasis-markers t)
-  (map! :n "z l" 'org-toggle-link-display))
+  org-hide-emphasis-markers t))
 
 (after! org-capture
 ;; org-agenda
 (setq org-capture-templates
       (quote (("t" "TODO" entry (file "~/org/refile.org")
                "* TODO %?\n")
+              ("m" "Meeting" entry (file+headline "agenda.org" "Future")
+               concat "* %? :meeting:\n"
+                      "<%<%Y-%m-%d %a %H:00>>")
               ("b" "Book" entry (file "~/org/books.org")
                "* %^{TITLE}\n:PROPERTIES:\n:ADDED: %<[%Y-%02m-%02d]>\n:END:%^{AUTHOR}p\n%?" :empty-lines 1)))))
 

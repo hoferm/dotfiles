@@ -1,0 +1,8 @@
+set -x XSECURELOCK_SAVER "saver_mpv"
+set -x XSECURELOCK_PASSWORD_PROMPT "time_hex"
+set -x XSECURELOCK_FONT "JetBrains Mono Nerd Font"
+set -x XSECURELOCK_COMPOSITE_OBSCURER "0"
+set -x XSECURELOCK_LIST_VIDEOS_COMMAND "find ~/.local/d/videos/screensaver type f"
+set -x XSECURELOCK_BLANK_TIMEOUT "-1"
+set -x XSECURELOCK_AUTH_BACKGROUND_COLOR "rgb:fa/fa/fa"
+set -x XSECURELOCK_AUTH_FOREGROUND_COLOR "rgb:44/44/44"

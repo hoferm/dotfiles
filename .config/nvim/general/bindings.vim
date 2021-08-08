@@ -27,7 +27,7 @@ cnoremap $t <CR>:t''<CR>:noh<CR>
 cnoremap $m <CR>:m''<CR>:noh<CR>
 cnoremap $d <CR>:d<CR>``
 
-nnoremap <silent> <Leader>t :<C-U>call Z_CopyLine()<CR>
+" nnoremap <silent> <Leader>t :<C-U>call Z_CopyLine()<CR>
 nnoremap <silent> <Leader>T :<C-U>call Z_CopyLineTo()<CR>==
 nnoremap <silent> <Leader>m :<C-U>call Z_MoveLine()<CR>
 nnoremap <silent> <Leader>M :<C-U>call Z_MoveLineTo()<CR>==
@@ -56,9 +56,9 @@ nnoremap zo o<CR>
 nnoremap 0 ^
 nnoremap ^ 0
 
-inoremap {<CR> {<CR>}<Esc>O
-inoremap [<CR> [<CR>]<Esc>O
-inoremap (<CR> (<CR>)<Esc>O
+" inoremap {<CR> {<CR>}<Esc>O
+" inoremap [<CR> [<CR>]<Esc>O
+" inoremap (<CR> (<CR>)<Esc>O
 
 inoremap <Esc> <Esc>
 nnoremap <Esc> <Esc>
@@ -75,6 +75,9 @@ nnoremap <Leader>p "+p
 nnoremap <Leader>P "+P
 
 nnoremap <silent> <Leader>xt call SynGroup()<CR>
+
+" Markdown add timestamp
+nnoremap <Leader>nt m'A<a name="<C-R>=strftime('%Y%m%dT%H%M%S')<CR>"></a> <!-- @<C-R>=strftime('%Y%m%dT%H%M%S')<CR> --><ESC>
 
 "Spellchecking
 map <silent> <F5> :setlocal spell! spelllang=de_at<CR>

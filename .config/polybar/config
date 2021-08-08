@@ -1,130 +1,101 @@
 [colors]
-background = #1d252c
-background-alt = #444
-foreground = #a0b3c5
-foreground-alt = #888
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
+fg = #d8dee9
+bg = #2e3440
+bg-focus = #4c566a
+primary = #8fbcbb
+alert = #bf616a
+
+[settings]
+format-foreground =
+format-background = ${colors.bg}
+format-underline = ${colors.primary}
+format-padding = 1
 
 [bar/main]
-width = 100%
-height = 3%
+monitor = ${env:MONITOR:}
 
-fixed-center = true
-bottom = false
+font-0 = JetBrainsMono Nerd Font:pixelsize=10:style=medium;
+font-1 = Noto Color Emoji:fontformat=truetype:scale=10:antialias=false;
+font-2 = Noto Sans CJK:fontformat=truetype:pixelsize=10:antialias=false;
 
-background = ${colors.background}
-foreground = ${colors.foreground}
-
-border-size = 0
-line-size = 2
-padding = 1
-module-margin = 1
-
-font-0 = "SauceCodePro Nerd Font:pixelsize=12.5;2"
-font-1 = "FontAwesome:size=11;3"
-font-2 = "Material Icons:size=11;3"
-font-3 = "Weather Icons:size=11;3"
-font-4 = "github-octicons:size=11;3"
-font-5 = "Source Han Sans:pixelsize=12;2"
-
-modules-left = date bspwm xwindow
-modules-center = mpd
-modules-right = eth memory cpu alsa
-
-tray-position = right
-tray-padding = 2
-tray-maxsize = 24
-
-override-redirect = false
 wm-restack = bspwm
+enable-ipc = true
+fixed-center = false
+separator =
 
-[module/date]
-type = internal/date
+width = 100%
+height = 32
 
-interval = 1.0
+underline-size = 3
 
-date = %a %d
-time = %H:%M:%S
+background = ${colors.bg}
+foreground = ${colors.fg}
 
-format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+module-margin-right = 1
 
-label = %date% %time%
+modules-left = ewmh xwindow
+modules-right = weather vol time
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:50:...%
+
+format-underline =
+format-background = ${colors.primary}
+format-foreground = ${colors.bg}
+
+[module/ewmh]
+type = internal/xworkspaces
+pin-workspaces = false
+
+format = <label-state>
+
+label-active = " %index% "
+label-occupied = " %index% "
+label-urgent = " %index% "
+label-empty = " %index% "
+
+label-focused-background = ${colors.bg-focus}
+label-focused-underline = ${colors.primary}
+label-urgent-background = ${colors.alert}
+label-empty-foreground = ${colors.bg-focus}
 
 [module/bspwm]
 type = internal/bspwm
 
-enable-scroll = false
+label-focused = %name%
+label-focused-background = ${colors.bg-focus}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 1
 
-label-focused-underline = #fba922
-label-occupied-underline = ${colors.foreground-alt}
-label-urgent-underline = #9b0a20
-label-occupied-foreground = #cccccc
-label-empty-foreground = #555555
+label-occupied = %name%
+label-occupied-padding = 1
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:35:...%
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
 
-[module/eth]
-type = internal/network
-interface = enp6s0
-interval = 3.0
+label-empty = %name%
+label-empty-foreground = ${colors.bg-focus}
+label-empty-padding = 1
 
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-underline =
+format-background =
+format-padding =
 
-label-connected =  %downspeed:1:9%  %upspeed:1:9%
+label-separator = |
 
-format-disconnected =
+[module/weather]
+type = custom/script
+exec = weather
+interval = 1800
 
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = %percentage_used:2%%
+[module/vol]
+type = custom/ipc
+hook-0 = vol
+initial = 1
 
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = %percentage:2%%
-
-[module/mpd]
-type = internal/mpd
-
-host = 127.0.0.1
-port = 6600
-
-format-online = <toggle> <label-song> <label-time> <icon-repeat>
-format-stopped = <icon-stop> <label-song> <icon-repeat>
-
-label-time = - %elapsed% / %total%
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-repeat = 
-
-toggle-on-foreground = ${colors.foreground}
-toggle-off-foreground = ${colors.foreground-alt}
-
-# bar-progress-width = 15
-# bar-progress-indicator = >
-# bar-progress-fill = =
-# bar-progress-empty = -
-
-[module/alsa]
-type = internal/alsa
-format-volume = <ramp-volume> <label-volume>
-
-label-muted =  muted
-label-muted-foreground = #66
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+[module/time]
+type = custom/script
+exec = clock
+interval = 60

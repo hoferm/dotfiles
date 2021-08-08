@@ -1,0 +1,15 @@
+#!/usr/bin/sh
+
+hide_bar() {
+    polybar-msg cmd hide
+}
+
+show_bar() {
+    polybar-msg cmd show
+}
+
+hide_nodes() {
+    for node in $1; do
+        bspc node "$node" -g hidden=on
+    done
+}

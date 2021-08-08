@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+
+if [ -z "$(pidof polybar)" ]; then
+    $XDG_CONFIG_HOME/polybar/launch.sh &
+else
+    polybar-msg cmd restart
+    notify-send -u low "Reloaded polybar"
+fi

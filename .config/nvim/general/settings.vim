@@ -37,16 +37,19 @@ set nobackup
 set autoindent
 set copyindent
 
+set splitright
+set splitbelow
+
 set scrolloff=2
 set showmatch
 set comments=s1:/*,mb:\ *,e1x:\ */
 
 set number
-aug numbertoggle
-    au!
-    au BufEnter,CmdlineLeave,CmdwinLeave,FocusGained,InsertLeave * set relativenumber | redraw
-    au BufLeave,CmdlineEnter,CmdwinEnter,FocusLost,InsertEnter * set norelativenumber | redraw
-aug END
+" aug numbertoggle
+"     au!
+"     au BufEnter,CmdlineLeave,CmdwinLeave,FocusGained,InsertLeave * set relativenumber | redraw
+"     au BufLeave,CmdlineEnter,CmdwinEnter,FocusLost,InsertEnter * set norelativenumber | redraw
+" aug END
 
 set signcolumn=yes
 
@@ -80,11 +83,6 @@ aug QFClose
     au!
     au WinEnter * if winnr('$') == 1 && getbufvar(winbufnr(winnr()), "&buftype") == "quickfix"|q|endif
 aug END
-
-augroup TrailingWhitespace
-    autocmd!
-    autocmd BufWritePre * :call StripTrailingWhitespaces()
-augroup END
 
 augroup project
     autocmd!

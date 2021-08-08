@@ -1,0 +1,11 @@
+#!/usr/bin/sh
+
+cut -d ';' -f1 ~/.local/share/unicode/emoji | rofi -dmenu -i -l 20 | sed "s/ .*//" | tr -d '\n' | xclip -sel clip
+
+# [ -z "$chosen" ] || exit
+
+# if [ -n "$1" ]; then
+#     xdotool --delay=2 key Shift+Insert
+# else
+#     echo "$chosen" | tr -d '\n' | xclip -selection clipboard
+# fi

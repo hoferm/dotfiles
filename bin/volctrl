@@ -1,0 +1,11 @@
+#!/usr/bin/sh
+
+case "$1" in
+    toggle) amixer -q set Master toggle ;;
+    up) amixer -q set Master 5%+ ;;
+    down) amixer -q set Master 5%- ;;
+esac
+
+# polybar-msg hook vol 1
+# Add 34 to signal number to get the correct signal (10)
+kill -44 $(pidof dwmblocks)

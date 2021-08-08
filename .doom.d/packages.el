@@ -8,4 +8,4 @@
 
 (package! org-super-agenda)
 (package! org-agenda-property)
-(package! zig-mode)
+(package! svg-tag-mode)

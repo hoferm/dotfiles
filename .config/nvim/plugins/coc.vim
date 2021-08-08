@@ -11,7 +11,9 @@ inoremap <silent><expr> <TAB>
   \ <SID>check_back_space() ? "\<TAB>" :
   \ coc#refresh()
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                        \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
     let col = col('.') - 1
@@ -26,16 +28,16 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 nnoremap <silent> K :<C-U>call CocActionAsync('doHover')<CR>
+nmap <silent> <Leader>ca v<Plug>(coc-codeaction-selected)<ESC>
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cy <Plug>(coc-type-definition)
 nmap <silent> <Leader>ci <Plug>(coc-implementation)
 nmap <silent> <Leader>cr <Plug>(coc-references)
-nnoremap <silent> <Leader>cf :RustFmt<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <F7> :CocCommand rust-analyzer.toggleInlayHints<CR>
 " xmap <silent> <leader>ca :<C-u>execute 'CocCommand actions.open ' . visualmode()<CR>
 " nmap <silent> <leader>ca :<C-u>set operatorfunc=<SID>cocActionsOpenFromSelected<CR>g@
-nmap <Leader>ca <Plug>(coc-codeaction)
 " nnoremap <silent> <Leader>co :<C-u>CocList outline<CR>
 nnoremap <silent> <Leader>cco :CocFzfList outline<CR>
 " function text object

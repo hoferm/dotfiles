@@ -1,8 +1,7 @@
 sanitize tridactyllocal tridactylsync
 
 set searchengine duckduckgo
-set colors base16-github
-set theme shydactyl
+colorscheme base16-nord
 set modeindicator false
 set modeindicatorshowkeys true
 set allowautofocus true
@@ -12,17 +11,16 @@ set hintdelay 100
 " Search URLS
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.aur https://aur.archlinux.org/packages?O=0&K=%s
-set searchurls.crates https://crates.io/search?q=%s
 set searchurls.librs https://lib.rs/search?q=%s
 set searchurls.rust https://doc.rust-lang.org/std/index.html?search=%s
 set searchurls.docsrs https://docs.rs/%s
 set searchurls.docsq https://docs.rs/releases/search?query=%s
 set searchurls.reddit https://old.reddit.com/r/%s
-set searchurls.searxme https://searx.me/?q=%s&categories=general&language=en-US
+set searchurls.searx https://searx.xyz/?q=%s&categories=general&language=en-US
 set searchurls.yt https://youtube.com/results?search_query=%s
 
-guiset_quiet hoverlink right
-guiset_quiet tabs count
+" guiset_quiet hoverlink right
+" guiset_quiet tabs count
 
 set editorcmd alacritty -e nvim
 " Toggle comments on reddit and hackernews
@@ -42,6 +40,7 @@ bind N findnext -1
 bind ,<Space> nohlsearch
 bind gd tabdetach
 bind gD composite tabduplicate | tabdetach
+bind ;f hint -F e => e.dispatchEvent(new MouseEvent('mouseover', {}))
 
 " Better hinting
 bindurl youtu((\.be)|(be\.com)) f hint -J
@@ -56,7 +55,10 @@ bind ga js tri.native.run(`bookmarks -a '${document.title} -- ${document.locatio
 bind gA js tri.native.run(`bookmarks -d '${document.title} -- ${document.location.href}'`)
 
 " Open video with mpv
-bind v js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'`)
+bind gv js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'`)
+
+" Download youtube video
+bind gy js tri.native.run(`youtube-dl -x -o '~/music/%(title)s.%(ext)s' '${document.location.href}'`)
 
 " RSS
 " alias save_rss jsb -p tri.native.run("cat >> ~/.newesboat/urls", JS_ARG)
@@ -64,6 +66,6 @@ bind v js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'
 " RSS Youtube
 alias save_rss jsb -p tri.native.run("newsboat-yt", JS_ARG)
 set rsscmd save_rss %u
-bind gy js tri.native.run(`newsboat-yt '${document.location.href}'`)
+bind gn js tri.native.run(`newsboat-yt '${document.location.href}'`)
 
 vim: set filetype=vim:

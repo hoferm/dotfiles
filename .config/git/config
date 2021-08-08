@@ -1,0 +1,42 @@
+[user]
+	name = Michael Hofer
+	email = hoferm90@gmail.com
+	signingKey = 2CE1ED07F0144ABA91AFF5561529582288458D81
+[core]
+	excludesfile = /home/hoferm/.gitignore_global
+
+[diff]
+	tool = nvimdiff
+[difftool]
+	prompt = true
+[difftool "nvimdiff"]
+	cmd = nvim -d $LOCAL $REMOTE
+[merge]
+	tool = nvimdiff
+[mergetool]
+	prompt = true
+[mergetool "nvimdiff"]
+	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+
+
+; [color "status"]
+;	added = blue bold
+;	changed = blue
+;	untracked = blue
+
+; [color "branch"]
+;	current = blue bold reverse
+;	local = blue bold
+;	remote = blue
+
+[alias]
+	lg = log --graph --pretty=format:'%Cblue%h%Creset -%d %s %C(cyan)(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ignore = "!gi() { curl -sL https://www.gitignore.io/api/$@ ;}; gi"
+	mr = !sh -c 'git fetch $1 merge-requests/$2/head:mr-$1-$2 && git checkout mr-$1-$2' -
+
+[credential]
+	la = log --oneline --all --decorate --graph
+	las = !git --no-pager log --oneline --all --decorate --graph -30
+	helper = cache
+[pull]
+	rebase = true
