@@ -13,4 +13,4 @@ picom -b
 xsetroot -cursor_name left_ptr &
 xrandr --output DVI-I-1 --auto --output HDMI-0 --auto --left-of DVI-I-1
 dwmblocks &
-exec dwm
+exec spectrwm

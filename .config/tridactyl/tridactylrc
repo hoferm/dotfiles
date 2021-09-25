@@ -57,6 +57,11 @@ bind gA js tri.native.run(`bookmarks -d '${document.title} -- ${document.locatio
 " Open video with mpv
 bind gv js tri.native.run(`mpv --x11-name=mpv-firefox '${document.location.href}'`)
 
+" Open twitch streams with streamlink
+command twitchsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('streamlink ' + url + ' best'))
+" exaliases.twitchsafe = js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet('streamlink ' + url + ' best'))
+bindurl ^https://www.twitch.tv ;v hint -W twitchsafe
+
 " Download youtube video
 bind gy js tri.native.run(`youtube-dl -x -o '~/music/%(title)s.%(ext)s' '${document.location.href}'`)
 
