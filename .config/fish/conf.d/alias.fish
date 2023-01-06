@@ -24,3 +24,9 @@ alias mv "mv -iv"
 alias mkd "mkdir -pv"
 
 alias pdcmark "pulldown-cmark -T -S -F -L"
+
+#editor
+alias hx "helix"
+
+#gitui
+alias gitui "gitui -t mocha.ron"

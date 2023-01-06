@@ -30,7 +30,7 @@ set -x CUDA_CACHE_PATH "$XDG_CACHE_HOME/nv"
 set TERM xterm-256color
 
 set -x BROWSER "firefox"
-set -x EDITOR "nvim"
+set -x EDITOR "helix"
 
 set fish_greeting
 
@@ -70,7 +70,7 @@ function fish_mode_prompt
 end
 
 if status is-login
-    if test -z "$DISPLAY"
-        exec startx -- -keeptty
-    end
+   if test -z "$DISPLAY"
+       exec startx -- -keeptty
+   end
 end
