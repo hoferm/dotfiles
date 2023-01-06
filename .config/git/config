@@ -4,6 +4,7 @@
 	signingKey = 2CE1ED07F0144ABA91AFF5561529582288458D81
 [core]
 	excludesfile = /home/hoferm/.gitignore_global
+	autocrlf = false
 
 [diff]
 	tool = nvimdiff
