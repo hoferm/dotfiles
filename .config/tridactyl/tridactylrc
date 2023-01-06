@@ -1,7 +1,7 @@
 sanitize tridactyllocal tridactylsync
 
 set searchengine duckduckgo
-colorscheme base16-nord
+colorscheme catppuccin
 set modeindicator false
 set modeindicatorshowkeys true
 set allowautofocus true
@@ -44,8 +44,8 @@ bind ;f hint -F e => e.dispatchEvent(new MouseEvent('mouseover', {}))
 
 " Better hinting
 bindurl youtu((\.be)|(be\.com)) f hint -J
-bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
-bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
+" bindurl ^https://duckduckgo.com f hint -Jc [class=result__a]
+" bindurl ^https://duckduckgo.com F hint -Jbc [class=result__a]
 
 " Go to old reddit
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
