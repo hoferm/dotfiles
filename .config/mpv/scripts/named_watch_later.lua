@@ -28,7 +28,7 @@ local function append_name(event)
     -- This is done to read the path into 'md5sum'.
     local tmpname = os.tmpname()
     local tmp = io.open(tmpname, "w")
-    tmp:write(abs_path):flush()
+    tmp:write(abs_path)
     local hash = io.popen("md5sum "..tmpname):read():match("^%w+"):upper()
     os.remove(tmpname)
 
@@ -44,7 +44,7 @@ local function append_name(event)
             if exists(hashfile) then
                 local metadata = title.."\n"..path
                 file = io.open(hashfile..".meta", "w")
-                file:write(metadata):flush()
+                file:write(metadata)
                 io.close(file)
             else if exists(hashfile..".meta") then
                 os.remove(hashfile..".meta")
