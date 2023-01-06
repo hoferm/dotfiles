@@ -1,0 +1,8 @@
+# Server address
+server_address = "https://sponsor.ajay.app"
+# Categories: sponsor, selfpromo, interaction, poi_highlight, intro, outro, preview, music_offtopic, filler, exclusive_access
+categories = ["sponsor", "selfpromo", "interaction", "intro", "outro", "music_offtopic", "poi_highlight"]
+# Action types: skip, mute, poi, full
+action_types = ["skip", "poi"]
+# Get segments for a video with extra privacy 
+privacy_api = false
