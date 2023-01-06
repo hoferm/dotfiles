@@ -1,0 +1,3 @@
+#!/usr/bin/sh
+
+streamlink twitch.tv/$1 best
