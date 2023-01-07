@@ -2,8 +2,8 @@
 
 feh --bg-fill ~/.local/share/d/pictures/wallpaper/Street.jpg &
 xset r rate 200 50 &
-pipewire &
-wireplumber &
+# pipewire &
+# wireplumber &
 picom &
 
 ~/bin/dwm/bar.sh &
