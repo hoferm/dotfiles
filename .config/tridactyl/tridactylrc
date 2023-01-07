@@ -34,9 +34,9 @@ set hintnames numeric
 
 unbind <C-f>
 bind / fillcmdline find
-bind ? fillcmdline find -?
-bind n findnext 1
-bind N findnext -1
+bind ? fillcmdline find --reverse
+bind n findnext --search-from-view
+bind N findnext --search-from-view --reverse
 bind ,<Space> nohlsearch
 bind gd tabdetach
 bind gD composite tabduplicate | tabdetach
@@ -64,7 +64,7 @@ command twitchsafe js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.e
 bindurl ^https://www.twitch.tv ;v hint -W twitchsafe
 
 " Download youtube video
-bind gy js tri.native.run(`youtube-dl -x -o '~/music/%(title)s.%(ext)s' '${document.location.href}'`)
+bind gy js tri.native.run(`yt-dlp -x -o '~/music/%(title)s.%(ext)s' '${document.location.href}'`)
 
 " RSS
 " alias save_rss jsb -p tri.native.run("cat >> ~/.newesboat/urls", JS_ARG)
