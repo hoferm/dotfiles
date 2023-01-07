@@ -41,6 +41,7 @@ bind ,<Space> nohlsearch
 bind gd tabdetach
 bind gD composite tabduplicate | tabdetach
 bind ;f hint -F e => e.dispatchEvent(new MouseEvent('mouseover', {}))
+bind g- tab #
 
 " Better hinting
 bindurl youtu((\.be)|(be\.com)) f hint -J
