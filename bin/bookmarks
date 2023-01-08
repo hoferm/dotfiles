@@ -38,10 +38,10 @@ shift $((OPTIND-1))
 
 if [ $DELETE = true ]; then
     if [ -z "$1" ]; then
-        delete_bookmark "$(cat "$FILE" | rofi -dmenu -i -p "Delete bookmark")"
+        delete_bookmark "$(cat "$FILE" | dmenu -i -p "Delete bookmark" -l 20 -d '``')"
     else
         delete_bookmark "$1"
     fi
 else
-    open_bookmark "$(cat "$FILE" | rofi -dmenu -i -p "Open bookmark")"
+    $BROWSER "$(cat "$FILE" | dmenu -i -p "Open bookmark" -l 20 -d '`')"
 fi

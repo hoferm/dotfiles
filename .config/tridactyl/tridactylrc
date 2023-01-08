@@ -52,8 +52,8 @@ bindurl youtu((\.be)|(be\.com)) f hint -J
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
 
 " Bookmarking tool
-bind ga js tri.native.run(`bookmarks -a '${document.title} -- ${document.location.href}'`)
-bind gA js tri.native.run(`bookmarks -d '${document.title} -- ${document.location.href}'`)
+bind ga js tri.native.run(`bookmarks -a '${document.title}\`${document.location.href}'`)
+bind gA js tri.native.run(`bookmarks -d '${document.title}\`${document.location.href}'`)
 
 " Open video with mpv
 bind gv js tri.native.run(`mpv '${document.location.href}'`)
