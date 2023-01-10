@@ -2,6 +2,7 @@
 #setxkbmap -option compose:ralt
 # setxkbmap -layout us,at -option grp:shift_toggle -option grp_led:scroll
 # xset r rate 300 50
+pipewire&
 unclutter --timeout 2 &
 #setbg &
 redshift &
