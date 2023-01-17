@@ -7,6 +7,7 @@ set modeindicatorshowkeys true
 set allowautofocus true
 set tabopencontaineraware false
 set hintdelay 100
+set smoothscrolling true
 
 " Search URLS
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
