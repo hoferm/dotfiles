@@ -1,6 +1,8 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
-SETUVAR --export FZF_DEFAULT_OPTS:\x2d\x2dcolor\x3dbg\x2b\x3a\x23313244\x2cbg\x3a\x231e1e2e\x2cspinner\x3a\x23f5e0dc\x2chl\x3a\x23f38ba8\x20\x2d\x2dcolor\x3dfg\x3a\x23cdd6f4\x2cheader\x3a\x23f38ba8\x2cinfo\x3a\x23cba6f7\x2cpointer\x3a\x23f5e0dc\x20\x2d\x2dcolor\x3dmarker\x3a\x23f5e0dc\x2cfg\x2b\x3a\x23cdd6f4\x2cprompt\x3a\x23cba6f7\x2chl\x2b\x3a\x23f38ba8
+SETUVAR --export FZF_DEFAULT_OPTS:\x0a\x09\x2d\x2dcolor\x3dfg\x3a\x23797593\x2cbg\x3a\x23faf4ed\x2chl\x3a\x23d7827e\x0a\x09\x2d\x2dcolor\x3dfg\x2b\x3a\x23575279\x2cbg\x2b\x3a\x23f2e9e1\x2chl\x2b\x3a\x23d7827e\x0a\x09\x2d\x2dcolor\x3dborder\x3a\x23dfdad9\x2cheader\x3a\x23286983\x2cgutter\x3a\x23faf4ed\x0a\x09\x2d\x2dcolor\x3dspinner\x3a\x23ea9d34\x2cinfo\x3a\x2356949f\x2cseparator\x3a\x23dfdad9\x0a\x09\x2d\x2dcolor\x3dpointer\x3a\x23907aa9\x2cmarker\x3a\x23b4637a\x2cprompt\x3a\x23797593
+SETUVAR --export SPOTIFY_ID:93b0f852b32d49d2af7c4ee05cf1a441
+SETUVAR --export SPOTIFY_SECRET:777d864b3e9f4ade9949ecc35cfe66b0
 SETUVAR __fish_initialized:3400
 SETUVAR _fish_abbr_cfa:helix\x20\x7e/\x2econfig/alacritty/alacritty\x2eyml
 SETUVAR _fish_abbr_cfb:helix\x20\x7e/\x2econfig/bspwm/bspwmrc
@@ -32,9 +34,12 @@ SETUVAR _fish_abbr_ydl:youtube\x2ddl\x20\x2do\x20\x27\x25\x28title\x29s\x2e\x25\
 SETUVAR _fish_abbr_yi:yay\x20\x2dSlq\x20\x7c\x20fzf\x20\x2dm\x20\x2d\x2dpreview\x20\x27yay\x20\x2dSi\x20\x7b1\x7d\x27\x7c\x20xargs\x20\x2dro\x20yay\x20\x2dS
 SETUVAR _fish_abbr_yr:yay\x20\x2dQeq\x20\x7c\x20fzf\x20\x2dm\x20\x2d\x2dpreview\x20\x27yay\x20\x2dQi\x20\x7b1\x7d\x27\x20\x7c\x20xargs\x20\x2dro\x20yay\x20\x2dRs
 SETUVAR _fish_abbr_ytdl:youtube\x2ddl\x20\x2dx\x20\x2do\x20\x27\x7e/music/download/\x25\x28title\x29s\x2e\x25\x28ext\x29s\x27\x20\x2d\x2drestrict\x2dfilenames
-SETUVAR _fisher_PatrickF1_2F_fzf_2E_fish_files:/home/hoferm/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e/home/hoferm/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e/home/hoferm/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e/home/hoferm/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
-SETUVAR _fisher_jorgebucaran_2F_fisher_files:/home/hoferm/\x2econfig/fish/functions/fisher\x2efish\x1e/home/hoferm/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ePatrickF1/fzf\x2efish\x1ecatppuccin/fish
+SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/themes/Catppuccin\x20Frappe\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Latte\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Macchiato\x2etheme\x1e\x7e/\x2econfig/fish/themes/Catppuccin\x20Mocha\x2etheme
+SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
+SETUVAR _fisher_patrickf1_2F_fzf_2E_fish_files:\x7e/\x2econfig/fish/functions/_fzf_configure_bindings_help\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_extract_var_info\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_changed_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_preview_file\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_diff_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_report_file_type\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_directory\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_log\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_git_status\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_history\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_processes\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_search_variables\x2efish\x1e\x7e/\x2econfig/fish/functions/_fzf_wrapper\x2efish\x1e\x7e/\x2econfig/fish/functions/fzf_configure_bindings\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/fzf\x2efish\x1e\x7e/\x2econfig/fish/completions/fzf_configure_bindings\x2efish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ecatppuccin/fish\x1erose\x2dpine/fish\x1epatrickf1/fzf\x2efish
+SETUVAR _fisher_rose_2D_pine_2F_fish_files:\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x20Dawn\x2etheme\x1e\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x20Moon\x2etheme\x1e\x7e/\x2econfig/fish/themes/Ros\u00e9\x20Pine\x2etheme
+SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:4c566a
 SETUVAR fish_color_cancel:\x2dr
 SETUVAR fish_color_command:81a1c1

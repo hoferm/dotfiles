@@ -37,3 +37,6 @@ abbr px "xsel -b"
 # youtube-dl
 abbr ytdl "youtube-dl -x -o '~/music/download/%(title)s.%(ext)s' --restrict-filenames"
 abbr ydl "youtube-dl -o '%(title)s.%(ext)s' --add-metadata --restrict-filenames"
+
+# Open keymap config
+abbr hxpc "doas $EDITOR /usr/share/X11/xkb/symbols/pc"

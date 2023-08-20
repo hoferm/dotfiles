@@ -7,11 +7,16 @@ set -x FZF_CD_COMMAND "fd -t d . $HOME"
 set -x FZF_CD_WITH_HIDDEN_COMMAND "fd --hidden -t d . $HOME"
 set -x FZF_PREVIEW_FILE_CMD "bat --style=numbers --color=always"
 set -x FZF_PREVIEW_DIR_CMD "exa -l --color=always"
-# set -x FZF_DEFAULT_OPTS "--height 40% --reverse --info=inline --border"
-
-# set -x FZF_DEFAULT_OPTS "--height 40% --reverse --info=inline --border --color='hl:#88C0D0,bg+:#434c5e,gutter:#2E3440,hl+:#88C0D0,info:#8FBCBB,prompt:#81A1C1,border:#D8DEE9,pointer:#81A1C1,marker:#8FBCBB,spinner:#ECEFF4'"
 set -x FZF_CD_OPTS "--preview 'exa -l --color=always {}'"
 set -x FZF_ENABLE_OPEN_PREVIEW 1
+# Rose Pine Dawn
+set -Ux FZF_DEFAULT_OPTS "
+	--color=fg:#797593,bg:#faf4ed,hl:#d7827e
+	--color=fg+:#575279,bg+:#f2e9e1,hl+:#d7827e
+	--color=border:#dfdad9,header:#286983,gutter:#faf4ed
+	--color=spinner:#ea9d34,info:#56949f,separator:#dfdad9
+	--color=pointer:#907aa9,marker:#b4637a,prompt:#797593"
+
 set -x XDG_CONFIG_HOME "$HOME/.config"
 set -x XDG_CACHE_HOME "$HOME/.cache"
 set -x XDG_DATA_HOME "$HOME/.local/share"
