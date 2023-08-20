@@ -43,7 +43,7 @@ local function append_name(event)
             mp.unregister_event(add_metadata(hashfile, path, title))
             if exists(hashfile) then
                 local metadata = title.."\n"..path
-                file = io.open(hashfile..".meta", "w")
+                local file = io.open(hashfile..".meta", "w")
                 file:write(metadata)
                 io.close(file)
             else if exists(hashfile..".meta") then
